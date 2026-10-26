@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "sidebar-nav",
+      "type": "registry:block",
+      "title": "Sidebar Nav",
+      "description": "侧栏导航列表：线性图标 + 文字，选中项为灰色底，支持分组标题，导航项可渲染为链接。",
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "sidebar-nav.tsx", "type": "registry:component" }],
+      "meta": {
+        "usage": "设置界面的分类导航、文档站或应用的二级导航。用 SidebarNavGroup 分组（label 可选），SidebarNavItem 传 icon 和 active；需要路由跳转时用 render 渲染为链接，例如 render={<a href=\"/settings/general\" />} 或路由库的 Link。外层容器自己决定背景（通常是 bg-sidebar）。",
+        "avoid": [
+          "选中项不要改成强调色、加粗或加竖条",
+          "不要给图标单独上色，图标颜色由组件统一",
+          "需要可折叠、移动端抽屉的应用级侧栏不要用它（那是 shadcn 上游 sidebar 的场景）"
+        ]
+      }
+    }
+  ]
+}

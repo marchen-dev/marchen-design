@@ -19,5 +19,5 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["vite.config.ts", "playwright.config.ts", "scripts", "tokens", "registry/core.ts", "tests"]
+  "include": ["vite.config.ts", "preview/vite-plugin-csf-order.ts", "playwright.config.ts", "scripts", "tokens", "registry/core.ts", "tests"]
 }

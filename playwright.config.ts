@@ -5,8 +5,9 @@ const PORT = 4180
 // 截图回归：遍历 gallery 的 story × 明暗 × 强调色（pnpm screenshot / screenshot:update）
 // 基准图按平台区分文件名；系统字体在不同系统上渲染不同，基准以 macOS 为准
 export default defineConfig({
-  testDir: "tests/visual",
-  snapshotPathTemplate: "{testDir}/__screenshots__/{arg}-{platform}{ext}",
+  testDir: "tests",
+  testMatch: ["visual/**/*.spec.ts", "blocks/**/*.spec.ts"],
+  snapshotPathTemplate: "{testDir}/visual/__screenshots__/{arg}-{platform}{ext}",
   fullyParallel: false,
   reporter: "list",
   use: {

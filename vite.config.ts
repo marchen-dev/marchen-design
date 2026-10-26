@@ -2,6 +2,7 @@ import { resolve } from "node:path"
 import tailwindcss from "@tailwindcss/vite"
 import react from "@vitejs/plugin-react"
 import { defineConfig } from "vite"
+import { csfOrder } from "./preview/vite-plugin-csf-order.ts"
 
 const root = import.meta.dirname
 const r = (path: string) => resolve(root, path)
@@ -10,7 +11,7 @@ const r = (path: string) => resolve(root, path)
 export default defineConfig({
   root: r("preview"),
   publicDir: r("public"),
-  plugins: [react(), tailwindcss()],
+  plugins: [csfOrder(), react(), tailwindcss()],
   resolve: {
     // @/ 只代表用户项目里看到的路径，全部指向 registry 源码；~/ 是预览站内部代码
     // 与 tsconfig.paths.json（scripts/gen-paths.ts 生成）保持一致

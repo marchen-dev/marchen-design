@@ -184,4 +184,29 @@
 
 ## 区块（按需安装）
 
-暂无。
+### sidebar-nav
+
+侧栏导航列表：线性图标 + 文字，选中项为灰色底，支持分组标题，导航项可渲染为链接。
+
+**何时使用**：设置界面的分类导航、文档站或应用的二级导航。用 SidebarNavGroup 分组（label 可选），SidebarNavItem 传 icon 和 active；需要路由跳转时用 render 渲染为链接，例如 render={<a href="/settings/general" />} 或路由库的 Link。外层容器自己决定背景（通常是 bg-sidebar）。
+
+**不要这样用**：
+- 选中项不要改成强调色、加粗或加竖条
+- 不要给图标单独上色，图标颜色由组件统一
+- 需要可折叠、移动端抽屉的应用级侧栏不要用它（那是 shadcn 上游 sidebar 的场景）
+
+安装：`npx shadcn@latest add @marchen-design/sidebar-nav`
+
+### settings
+
+设置界面区块：SettingsShell（导航 + 内容区布局）、SettingsSection（分组）、SettingsRow（名称 ↔ 控件）、SettingsDialog（设置弹窗）。
+
+**何时使用**：所有设置界面都用这组区块：设置弹窗用 SettingsDialog，设置页面把 SettingsShell 放进页面布局。结构为 SettingsShellNav（直接放 SidebarNavItem）+ SettingsShellContent（SettingsHeader / SettingsBody / SettingsFooter）。SettingsBody 中用 SettingsSection 分组，每一项是 SettingsRow：label、可选 description，控件作为 children，名称会自动关联控件。立即生效的开关用 Switch；需要"保存"才生效时把按钮放在 SettingsFooter。
+
+**不要这样用**：
+- 不要用 shadcn 的 field 手拼设置行，field 适合竖排的普通表单
+- 设置行之间不要加分隔线，不要给分组卡片加阴影
+- 不要把 SettingsShellContent 的背景改成 popover 或 card，否则深色下卡片会显得凹陷
+- 一个分组里不要超过 6～7 行，太多时拆成多个分组
+
+安装：`npx shadcn@latest add @marchen-design/settings`

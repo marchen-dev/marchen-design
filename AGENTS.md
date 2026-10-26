@@ -49,11 +49,20 @@ tests/             lint-design 单元测试、visual/ 截图基准
 2. 在 `registry/ui/registry.json` 的 `include` 中加一行，`pnpm gen`。
 3. 按下面的组件视觉规格改写 class、精简变体和尺寸。**组件名、子组件结构、常用 prop 名保持与 shadcn 一致**，可以删变体，不能改名。交互和动画相关的 class（`data-open:`、`origin-(--transform-origin)` 等）保持原样。
 4. 补全 registry.json 的 `description`、`meta.usage`、`meta.avoid`。
-5. 写 `<name>.stories.tsx`（CSF：`export default { title: "UI/<Name>" }` + 具名导出的函数组件）。有弹层的组件要有一个默认打开的 story，并在默认导出里设置 `parameters.minHeight`。stories 不要写进 `files`。**title 必须与文件夹名对应**：`registry/ui/dropdown-menu/` → `"UI/Dropdown Menu"`（iframe 按文件路径只加载对应的 story，对不上时文档站会直接报错）。
+5. 写 `<name>.stories.tsx`（CSF：`export default { title: "UI/<Name>" }` + 具名导出的函数组件，**按想展示的顺序书写**，预览站按声明顺序展示；需要另排时导出 `__namedExportsOrder`）。有弹层的组件要有一个默认打开的 story，并在默认导出里设置 `parameters.minHeight`。stories 不要写进 `files`。**title 必须与文件夹名对应**：`registry/ui/dropdown-menu/` → `"UI/Dropdown Menu"`（iframe 按文件路径只加载对应的 story，对不上时文档站会直接报错）。
 6. 如果属于核心集，在 `registry/core.ts` 中标为 `ready: true`。
 7. `pnpm gen` → `pnpm check` → `pnpm dev` 在 gallery 里检查明暗 × 强调色 → `pnpm screenshot:update` 更新基准。
 
 完整页面 demo 放在 `preview/src/demos/<name>.stories.tsx`，`title` 为 `"Demos/<Name>"`（与文件名对应），`parameters.layout: "page"`。
+
+## 区块
+
+区块是用组件拼好的常用结构，放在 `registry/blocks/<name>/`，类型为 `registry:block`、文件类型 `registry:component`，安装后位于用户项目的 `components/<name>.tsx`（仓库里对应别名 `@/components/<name>`）。stories 的 title 为 `"Blocks/<Name>"`。区块不进 base，按需 `add`。
+
+- `sidebar-nav`：侧栏导航列表。导航项默认是按钮，需要跳转时用 `render={<a href />}` 或路由库的 Link；选中项为灰色底。
+- `settings`：设置界面。`SettingsDialog`（弹窗形态）或 `SettingsShell`（页面形态）→ `SettingsShellNav`（直接放 `SidebarNavItem`）+ `SettingsShellContent`（`SettingsHeader` / `SettingsBody` / `SettingsFooter`）→ `SettingsSection` → `SettingsRow`。
+- **设置界面用 `SettingsRow`，普通竖排表单用 shadcn 的 `field`**。`SettingsRow` 基于 Base UI 的 `Field`，名称自动关联控件，不需要 id。
+- 区块之间、区块对组件的依赖**必须写 `@marchen-design/xxx`**：写成上游名字时，用户安装区块会把项目里的 marchen-design 组件覆盖成上游版本（check-registry 会拦住）。
 
 ## 组件视觉规格
 
@@ -85,7 +94,7 @@ tests/             lint-design 单元测试、visual/ 截图基准
 | `pnpm fork <name...>` | 从上游复制组件作为改写起点（`--force` 覆盖） |
 | `pnpm check` | 日常检查：生成物一致性 → registry 依赖 → 设计规则 → 类型 → eslint → 单元测试 → registry 构建 |
 | `pnpm smoke` | 冒烟测试：临时目录里 init / add / 切换强调色 / 装上游组件 / 编译（约 1～2 分钟，需要网络；`--keep` 保留临时目录） |
-| `pnpm screenshot` / `screenshot:update` | 截图回归 / 更新基准（基准以 macOS 为准） |
+| `pnpm screenshot` / `screenshot:update` | Playwright：截图回归（基准以 macOS 为准）+ 区块交互测试（`tests/blocks/`）/ 更新截图基准 |
 | `pnpm lint:design` | 设计规则检查（`node plugin/skills/design-review/scripts/lint-design.mjs <目录>` 可检查任意目录） |
 | `pnpm build` | 构建 registry（`public/r`）和预览站（`dist/`，含 `dist/r`），即部署产物 |
 | `pnpm registry:build` | 只构建 registry 到 `public/r`；`REGISTRY_URL` 指定部署地址（默认 `https://design.suemor.com`，本地调试 `pnpm preview` 时传 `http://localhost:4173`） |

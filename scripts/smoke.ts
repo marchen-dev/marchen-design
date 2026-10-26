@@ -153,6 +153,16 @@ async function main() {
       expect(existsSync(join(app, "src/components/ui/button.tsx")), "button 未安装")
     })
 
+    await step("安装 settings 区块且不覆盖已有组件", async () => {
+      await run(SHADCN, ["add", "@marchen-design/settings", "-y"], app)
+      for (const file of ["components/settings.tsx", "components/sidebar-nav.tsx"])
+        expect(existsSync(join(app, "src", file)), `缺少 ${file}`)
+      // 区块依赖必须走命名空间，否则 CLI 会把已有组件替换成上游版本
+      const button = await readFile(join(app, "src/components/ui/button.tsx"), "utf8")
+      expect(button.includes("brand:"), "button 被替换成了上游版本")
+      await run("pnpm", ["build"], app)
+    })
+
     await step("未配置命名空间的项目按 URL 安装", async () => {
       await run(SHADCN, ["init", "-t", "vite", "-b", "base", "-p", "nova", "-n", "plain", "--no-monorepo", "-y"], tmp)
       await rm(join(plain, "src/components/ui/button.tsx"), { force: true })

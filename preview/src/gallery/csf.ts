@@ -14,7 +14,9 @@ export interface StoryMeta {
 
 export interface StoryModule {
   default: StoryMeta
-  [exportName: string]: ComponentType | StoryMeta
+  /** 具名导出的声明顺序：由 vite-plugin-csf-order 构建时注入，也可以在 story 文件里显式导出 */
+  __namedExportsOrder?: string[]
+  [exportName: string]: ComponentType | StoryMeta | string[] | undefined
 }
 
 export interface Story {
@@ -59,8 +61,11 @@ export function groupIdFromPath(path: string): string | undefined {
 export function toGroup(mod: StoryModule): StoryGroup {
   const meta = mod.default
   const id = sanitize(meta.title)
-  const stories = Object.entries(mod)
-    .filter(([key, value]) => key !== "default" && typeof value === "function")
+  // 命名空间对象的键按字母排序，优先用注入的声明顺序
+  const order = mod.__namedExportsOrder ?? Object.keys(mod)
+  const stories = order
+    .map((key) => [key, mod[key]] as const)
+    .filter(([key, value]) => key !== "default" && key !== "__namedExportsOrder" && typeof value === "function")
     .map(([key, value]) => ({
       id: `${id}--${sanitize(key)}`,
       name: startCase(key),

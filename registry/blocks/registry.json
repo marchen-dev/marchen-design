@@ -1,4 +1,8 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "items": []
+  "items": [],
+  "include": [
+    "./sidebar-nav/registry.json",
+    "./settings/registry.json"
+  ]
 }

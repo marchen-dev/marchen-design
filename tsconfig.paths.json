@@ -53,6 +53,12 @@
       "@/components/ui/tooltip": [
         "./registry/ui/tooltip/tooltip.tsx"
       ],
+      "@/components/settings": [
+        "./registry/blocks/settings/settings.tsx"
+      ],
+      "@/components/sidebar-nav": [
+        "./registry/blocks/sidebar-nav/sidebar-nav.tsx"
+      ],
       "@/lib/utils": [
         "./registry/lib/utils/utils.ts"
       ],

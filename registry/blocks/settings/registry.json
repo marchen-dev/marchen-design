@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "settings",
+      "type": "registry:block",
+      "title": "Settings",
+      "description": "设置界面区块：SettingsShell（导航 + 内容区布局）、SettingsSection（分组）、SettingsRow（名称 ↔ 控件）、SettingsDialog（设置弹窗）。",
+      "dependencies": ["@base-ui/react", "cn"],
+      "registryDependencies": ["@marchen-design/card", "@marchen-design/dialog", "@marchen-design/sidebar-nav"],
+      "files": [{ "path": "settings.tsx", "type": "registry:component" }],
+      "meta": {
+        "usage": "所有设置界面都用这组区块：设置弹窗用 SettingsDialog，设置页面把 SettingsShell 放进页面布局。结构为 SettingsShellNav（直接放 SidebarNavItem）+ SettingsShellContent（SettingsHeader / SettingsBody / SettingsFooter）。SettingsBody 中用 SettingsSection 分组，每一项是 SettingsRow：label、可选 description，控件作为 children，名称会自动关联控件。立即生效的开关用 Switch；需要\"保存\"才生效时把按钮放在 SettingsFooter。",
+        "avoid": [
+          "不要用 shadcn 的 field 手拼设置行，field 适合竖排的普通表单",
+          "设置行之间不要加分隔线，不要给分组卡片加阴影",
+          "不要把 SettingsShellContent 的背景改成 popover 或 card，否则深色下卡片会显得凹陷",
+          "一个分组里不要超过 6～7 行，太多时拆成多个分组"
+        ]
+      }
+    }
+  ]
+}

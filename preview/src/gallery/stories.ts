@@ -26,3 +26,4 @@ export const groups: StoryGroup[] = Object.entries(modules)
   .sort((a, b) => a.title.localeCompare(b.title))
 
 export const isDemo = (group: StoryGroup) => group.title.startsWith("Demos/")
+export const isBlock = (group: StoryGroup) => group.title.startsWith("Blocks/")

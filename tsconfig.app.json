@@ -25,5 +25,5 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["preview/src", "registry"],
-  "exclude": ["registry/core.ts"]
+  "exclude": ["registry/core.ts", "preview/vite-plugin-csf-order.ts"]
 }
