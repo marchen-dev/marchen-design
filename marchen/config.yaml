@@ -1,0 +1,6 @@
+schema: full
+acceptance:
+  enabled: false
+providers:
+  - claude-code
+version: 0.8.5
