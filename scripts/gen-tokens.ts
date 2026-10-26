@@ -65,9 +65,18 @@ function assertTokens(): string[] {
 
 // ───────────────────────── registry 主题条目 ─────────────────────────
 
+/** base 与 theme 共用：完整的明暗 token + 主题变量（默认强调色） */
+function fullCssVars() {
+  return {
+    theme: foundation.theme,
+    light: { radius: foundation.radius, ...formatAll(tokensFor("light", DEFAULT_ACCENT)) },
+    dark: formatAll(tokensFor("dark", DEFAULT_ACCENT)),
+  }
+}
+
+const zIndexVars = () => Object.fromEntries(Object.entries(foundation.zIndex).map(([k, v]) => [`--${k}`, v]))
+
 function baseItem() {
-  const light = formatAll(tokensFor("light", DEFAULT_ACCENT))
-  const dark = formatAll(tokensFor("dark", DEFAULT_ACCENT))
   const deps = [...baseExtras, ...core.filter((c) => c.ready).map((c) => c.name)]
 
   return {
@@ -87,18 +96,34 @@ function baseItem() {
     },
     dependencies: ["shadcn", "tw-animate-css", "lucide-react"],
     registryDependencies: deps.map((name) => `${NAMESPACE}/${name}`),
-    cssVars: {
-      theme: foundation.theme,
-      light: { radius: foundation.radius, ...light },
-      dark,
-    },
+    cssVars: fullCssVars(),
     css: {
       '@import "tw-animate-css"': {},
       '@import "shadcn/tailwind.css"': {},
       "@layer base": {
-        ":root": Object.fromEntries(Object.entries(foundation.zIndex).map(([k, v]) => [`--${k}`, v])),
+        ":root": zIndexVars(),
         "*": { "@apply border-border outline-ring/50": {} },
         body: { "@apply bg-background text-foreground": {} },
+        html: { "@apply font-sans": {} },
+      },
+    },
+  }
+}
+
+/**
+ * 只含 token 的主题：给 Radix / React Aria 项目或只想试配色的项目。
+ * 不改 components.json 配置、不装组件；也不带 base 中依赖 npm 包的 @import（tw-animate-css、shadcn/tailwind.css）
+ */
+function themeItem() {
+  return {
+    name: "theme",
+    type: "registry:theme",
+    title: "marchen-design theme",
+    description: "只包含 marchen-design 的明暗 token、圆角、字体与动效变量，不安装组件、不修改项目配置。",
+    cssVars: fullCssVars(),
+    css: {
+      "@layer base": {
+        ":root": zIndexVars(),
         html: { "@apply font-sans": {} },
       },
     },
@@ -185,7 +210,7 @@ export async function genTokens() {
 
   const themes = {
     $schema: "https://ui.shadcn.com/schema/registry.json",
-    items: [baseItem(), ...(Object.keys(accents) as AccentName[]).map(accentItem)],
+    items: [baseItem(), themeItem(), ...(Object.keys(accents) as AccentName[]).map(accentItem)],
   }
   await writeGenerated("registry/themes/registry.json", "json", SCRIPT, JSON.stringify(themes))
   await writeGenerated("preview/src/theme.css", "css", SCRIPT, previewCss())

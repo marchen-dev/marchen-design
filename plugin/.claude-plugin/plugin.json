@@ -1,6 +1,6 @@
 {
   "name": "marchen-design",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "按 marchen-design 设计系统（黑白 + 单一强调色，shadcn + Tailwind 4）设计和实现 UI，并审查是否符合规则",
   "author": { "name": "suemor233" }
 }

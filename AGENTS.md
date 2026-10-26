@@ -64,6 +64,22 @@ tests/             lint-design 单元测试、visual/ 截图基准
 - **设置界面用 `SettingsRow`，普通竖排表单用 shadcn 的 `field`**。`SettingsRow` 基于 Base UI 的 `Field`，名称自动关联控件，不需要 id。
 - 区块之间、区块对组件的依赖**必须写 `@marchen-design/xxx`**：写成上游名字时，用户安装区块会把项目里的 marchen-design 组件覆盖成上游版本（check-registry 会拦住）。
 
+## Claude Code plugin
+
+```
+plugin/skills/
+├── design/          自动触发（components.json 含 @marchen-design）：SKILL.md 只放模式检测 + 6 条硬规则 + 工作流程
+│   └── references/  principles.md · patterns.md · token-mode.md（手写）；components.md · tokens.css（生成）
+├── design-review/   审查流程；scripts/lint-design.mjs 与仓库 lint:design 共用
+└── design-init/     仅用户触发（disable-model-invocation）
+```
+
+- skill 中引用自带文件用 `${CLAUDE_SKILL_DIR}` / `${CLAUDE_PLUGIN_ROOT}`；plugin 安装在项目目录外，`allowed-tools` 需预授权读取（`Read(/${CLAUDE_SKILL_DIR}/**)`），否则每次读 references 都要用户确认。
+- SKILL.md 保持简短、规则可检查；新增规则先考虑能否放进组件本身或 lint，其次放 references，最后才进 SKILL.md。
+- registry 新增组件或区块后，`pnpm gen` 会更新 `components.md`；只在 marchen-design 未提供的组件写进 patterns.md 时注明"上游"。
+- `theme` 条目（gen-tokens 生成）：只含 token，无 config、无依赖，供 design-init 的仅 token 模式使用。
+- 本地试用：`claude plugin marketplace add <仓库路径>` + `claude plugin install marchen-design@marchen-design`；临时项目用 `npm_config_registry=https://registry.npmjs.org/`；用完 uninstall 并 remove marketplace。
+
 ## 组件视觉规格
 
 | 方面 | 规则 |

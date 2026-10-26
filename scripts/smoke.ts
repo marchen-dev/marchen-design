@@ -4,6 +4,7 @@
 // 选项：--keep 保留临时目录便于排查
 import { spawn } from "node:child_process"
 import { existsSync } from "node:fs"
+import { createHash } from "node:crypto"
 import { mkdtemp, readdir, readFile, rm, writeFile } from "node:fs/promises"
 import { createServer } from "node:http"
 import type { AddressInfo } from "node:net"
@@ -185,6 +186,31 @@ async function main() {
         for (const key of Object.keys(prev).filter((k) => !(ACCENT_KEYS as readonly string[]).includes(k)))
           expect(next[key] === prev[key], `${selector} --${key} 不应改变（${prev[key]} → ${next[key]}）`)
       }
+    })
+
+    await step("仅 token 模式：Radix 项目安装 theme", async () => {
+      const radix = join(tmp, "radix")
+      await run(SHADCN, ["init", "-t", "vite", "-b", "radix", "-p", "nova", "-n", "radix", "--no-monorepo", "-y"], tmp)
+      const configPath = join(radix, "components.json")
+      const buttonPath = join(radix, "src/components/ui/button.tsx")
+      const styleBefore = JSON.parse(await readFile(configPath, "utf8")).style
+      const hash = async (path: string) => createHash("sha1").update(await readFile(path)).digest("hex")
+      const buttonBefore = await hash(buttonPath)
+      expect(styleBefore.startsWith("radix-"), `期望 Radix 项目，实际 style 为 ${styleBefore}`)
+
+      await run(SHADCN, ["add", r("theme"), "-y"], radix)
+      const theme = JSON.parse(await readFile(join(tmp, "registry/r/theme.json"), "utf8")).cssVars
+      const css = await readFile(join(radix, "src/index.css"), "utf8")
+      for (const [selector, mode] of [[":root", "light"], [".dark", "dark"]] as const)
+        expect(cssVars(css, selector).primary === theme[mode].primary, `${selector} --primary 未更新为 marchen-design 的值`)
+      expect(JSON.parse(await readFile(configPath, "utf8")).style === styleBefore, "theme 不应修改 components.json 的 style")
+      expect((await hash(buttonPath)) === buttonBefore, "theme 不应修改组件文件")
+      await run("pnpm", ["build"], radix)
+
+      await run(SHADCN, ["add", r("accent-green"), "-y"], radix)
+      const green = JSON.parse(await readFile(join(tmp, "registry/r/accent-green.json"), "utf8")).cssVars
+      const cssAfter = await readFile(join(radix, "src/index.css"), "utf8")
+      expect(cssVars(cssAfter, ":root").primary === green.light.primary, "theme 之后安装 accent-green 未生效")
     })
 
     await step("安装上游组件并编译", async () => {

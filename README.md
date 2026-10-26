@@ -67,14 +67,20 @@ toast.add({ title: "已保存", type: "success" })
 
 ## Claude Code plugin
 
-仓库同时是一个 Claude Code plugin marketplace：
+让 Claude Code 在做 UI 时自动遵守这套设计系统。安装（每台电脑一次）：
 
 ```
 /plugin marketplace add marchen-dev/marchen-design
 /plugin install marchen-design@marchen-design
 ```
 
-> design skill 的设计规则仍在编写中，目前只提供组件目录、纯 CSS token 和设计规则检查脚本（`design-review`）。
+| 入口 | 用法 |
+| --- | --- |
+| `/marchen-design:design-init` | 在当前目录初始化：新项目直接创建；已有项目按情况安装 base 或只引入 token（Radix / React Aria 项目）。覆盖任何文件前都会先确认 |
+| `design`（自动） | 项目的 `components.json` 配置了 `@marchen-design` 后，直接描述需求即可（"做一个设置页""做一个带筛选的列表页"），会选用对应的组件和区块、按规则组合，并在完成后运行设计规则检查 |
+| `/marchen-design:design-review` | 审查改动过的 UI 文件：规则脚本 + 清单检查，按"必须修改 / 建议修改"列出问题，不会自动改代码 |
+
+只想引入配色（例如 Radix 项目）：`npx shadcn@latest add https://design.suemor.com/r/theme.json`，只更新 CSS 变量，不安装组件、不修改项目配置。
 
 ## 本地开发
 
