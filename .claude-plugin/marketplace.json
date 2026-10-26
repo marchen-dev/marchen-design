@@ -1,0 +1,12 @@
+{
+  "name": "marchen-design",
+  "owner": { "name": "suemor233" },
+  "description": "marchen-design：黑白 + 单一强调色的设计系统",
+  "plugins": [
+    {
+      "name": "marchen-design",
+      "source": "./plugin",
+      "description": "按 marchen-design 设计系统设计和实现 UI，并审查是否符合规则"
+    }
+  ]
+}
