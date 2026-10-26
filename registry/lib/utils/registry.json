@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "Utils",
+      "description": "cn()：合并 className，处理 Tailwind 类冲突。",
+      "dependencies": ["cn"],
+      "files": [{ "path": "utils.ts", "type": "registry:lib" }],
+      "meta": { "forkedFrom": "shadcn@4.22.1/base-nova" }
+    }
+  ]
+}

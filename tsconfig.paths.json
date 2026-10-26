@@ -1,0 +1,64 @@
+// 由 scripts/gen-paths.ts 生成，勿手改。修改源头后运行 pnpm gen
+{
+  "compilerOptions": {
+    "paths": {
+      "@/components/ui/button": [
+        "./registry/ui/button/button.tsx"
+      ],
+      "@/components/ui/card": [
+        "./registry/ui/card/card.tsx"
+      ],
+      "@/components/ui/checkbox": [
+        "./registry/ui/checkbox/checkbox.tsx"
+      ],
+      "@/components/ui/dialog": [
+        "./registry/ui/dialog/dialog.tsx"
+      ],
+      "@/components/ui/dropdown-menu": [
+        "./registry/ui/dropdown-menu/dropdown-menu.tsx"
+      ],
+      "@/components/ui/field": [
+        "./registry/ui/field/field.tsx"
+      ],
+      "@/components/ui/input": [
+        "./registry/ui/input/input.tsx"
+      ],
+      "@/components/ui/label": [
+        "./registry/ui/label/label.tsx"
+      ],
+      "@/components/ui/popover": [
+        "./registry/ui/popover/popover.tsx"
+      ],
+      "@/components/ui/scroll-area": [
+        "./registry/ui/scroll-area/scroll-area.tsx"
+      ],
+      "@/components/ui/select": [
+        "./registry/ui/select/select.tsx"
+      ],
+      "@/components/ui/separator": [
+        "./registry/ui/separator/separator.tsx"
+      ],
+      "@/components/ui/switch": [
+        "./registry/ui/switch/switch.tsx"
+      ],
+      "@/components/ui/tabs": [
+        "./registry/ui/tabs/tabs.tsx"
+      ],
+      "@/components/ui/textarea": [
+        "./registry/ui/textarea/textarea.tsx"
+      ],
+      "@/components/ui/toast": [
+        "./registry/ui/toast/toast.tsx"
+      ],
+      "@/components/ui/tooltip": [
+        "./registry/ui/tooltip/tooltip.tsx"
+      ],
+      "@/lib/utils": [
+        "./registry/lib/utils/utils.ts"
+      ],
+      "~/*": [
+        "./preview/src/*"
+      ]
+    }
+  }
+}

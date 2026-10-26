@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "include": [
+    "./button/registry.json",
+    "./label/registry.json",
+    "./separator/registry.json",
+    "./field/registry.json",
+    "./input/registry.json",
+    "./textarea/registry.json",
+    "./select/registry.json",
+    "./switch/registry.json",
+    "./checkbox/registry.json",
+    "./dialog/registry.json",
+    "./popover/registry.json",
+    "./dropdown-menu/registry.json",
+    "./tooltip/registry.json",
+    "./toast/registry.json",
+    "./tabs/registry.json",
+    "./card/registry.json",
+    "./scroll-area/registry.json"
+  ],
+  "items": []
+}

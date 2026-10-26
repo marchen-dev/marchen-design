@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "marchen-design",
+  "homepage": "{{REGISTRY_URL}}",
+  "include": [
+    "./registry/lib/registry.json",
+    "./registry/ui/registry.json",
+    "./registry/blocks/registry.json",
+    "./registry/themes/registry.json"
+  ],
+  "items": []
+}
