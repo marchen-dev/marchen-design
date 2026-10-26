@@ -1,0 +1,15 @@
+{
+  "buildCommand": "pnpm build",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "outputDirectory": "./dist",
+  "nodeVersion": "22.21.1",
+  "headers": [
+    {
+      "source": "/r/*",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    }
+  ]
+}

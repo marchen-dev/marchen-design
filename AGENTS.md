@@ -49,11 +49,11 @@ tests/             lint-design 单元测试、visual/ 截图基准
 2. 在 `registry/ui/registry.json` 的 `include` 中加一行，`pnpm gen`。
 3. 按下面的组件视觉规格改写 class、精简变体和尺寸。**组件名、子组件结构、常用 prop 名保持与 shadcn 一致**，可以删变体，不能改名。交互和动画相关的 class（`data-open:`、`origin-(--transform-origin)` 等）保持原样。
 4. 补全 registry.json 的 `description`、`meta.usage`、`meta.avoid`。
-5. 写 `<name>.stories.tsx`（CSF：`export default { title: "UI/<Name>" }` + 具名导出的函数组件）。有弹层的组件要有一个默认打开的 story，并在默认导出里设置 `parameters.minHeight`。stories 不要写进 `files`。
+5. 写 `<name>.stories.tsx`（CSF：`export default { title: "UI/<Name>" }` + 具名导出的函数组件）。有弹层的组件要有一个默认打开的 story，并在默认导出里设置 `parameters.minHeight`。stories 不要写进 `files`。**title 必须与文件夹名对应**：`registry/ui/dropdown-menu/` → `"UI/Dropdown Menu"`（iframe 按文件路径只加载对应的 story，对不上时文档站会直接报错）。
 6. 如果属于核心集，在 `registry/core.ts` 中标为 `ready: true`。
 7. `pnpm gen` → `pnpm check` → `pnpm dev` 在 gallery 里检查明暗 × 强调色 → `pnpm screenshot:update` 更新基准。
 
-完整页面 demo 放在 `preview/src/demos/*.stories.tsx`，`title` 以 `Demos/` 开头，`parameters.layout: "page"`。
+完整页面 demo 放在 `preview/src/demos/<name>.stories.tsx`，`title` 为 `"Demos/<Name>"`（与文件名对应），`parameters.layout: "page"`。
 
 ## 组件视觉规格
 
@@ -87,9 +87,14 @@ tests/             lint-design 单元测试、visual/ 截图基准
 | `pnpm smoke` | 冒烟测试：临时目录里 init / add / 切换强调色 / 装上游组件 / 编译（约 1～2 分钟，需要网络；`--keep` 保留临时目录） |
 | `pnpm screenshot` / `screenshot:update` | 截图回归 / 更新基准（基准以 macOS 为准） |
 | `pnpm lint:design` | 设计规则检查（`node plugin/skills/design-review/scripts/lint-design.mjs <目录>` 可检查任意目录） |
-| `pnpm registry:build` | 构建 registry 到 `public/r`；`REGISTRY_URL` 指定部署地址（默认 `http://localhost:4173`） |
+| `pnpm build` | 构建 registry（`public/r`）和预览站（`dist/`，含 `dist/r`），即部署产物 |
+| `pnpm registry:build` | 只构建 registry 到 `public/r`；`REGISTRY_URL` 指定部署地址（默认 `https://design.suemor.com`，本地调试 `pnpm preview` 时传 `http://localhost:4173`） |
 
 ## 环境
 
-- npm 源使用官方源（见 `.npmrc`），不要改成内部源。
+- npm 源使用官方源（见 `.npmrc`），不要改成镜像源。
 - 包管理器：pnpm。
+
+## 部署
+
+EdgeOne Pages 连接 GitHub 仓库，push 到 `main` 自动部署，配置在 `edgeone.json`（构建命令 `pnpm build`、输出 `dist`、Node 22.21.1、`/r/*` 缓存头）。正式地址 `https://design.suemor.com`，写入所有 registry 产物和用户项目的 `components.json`，**不要更换**。平台分配的 `*.edgeone.cool` 域名需要控制台鉴权，不能作为 registry 地址。
