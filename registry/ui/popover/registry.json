@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "轻量浮层，点击触发。",
+      "dependencies": [
+        "@base-ui/react",
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "popover.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "forkedFrom": "shadcn@4.22.1/base-nova",
+        "usage": "展示与触发元素相关的补充信息或少量操作，例如同步状态、快速筛选。",
+        "avoid": [
+          "需要用户完成任务时用 Dialog",
+          "只是一句提示时用 Tooltip",
+          "选项列表用 DropdownMenu 或 Select"
+        ]
+      }
+    }
+  ]
+}

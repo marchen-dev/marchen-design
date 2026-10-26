@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "单行输入框，胶囊形。",
+      "dependencies": [
+        "@base-ui/react",
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "input.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "forkedFrom": "shadcn@4.22.1/base-nova",
+        "usage": "文本、搜索、数字、邮箱等单行输入；放在 Field 中配合 FieldLabel 使用。",
+        "avoid": [
+          "多行内容用 Textarea",
+          "不要给输入框加阴影或彩色边框，错误状态用 aria-invalid"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "分隔线，水平或垂直。",
+      "dependencies": [
+        "@base-ui/react",
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "separator.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "forkedFrom": "shadcn@4.22.1/base-nova",
+        "usage": "分隔同一容器内不同性质的内容，比如菜单分组、工具栏按钮组之间。",
+        "avoid": [
+          "设置项之间不要逐行加分隔线，行与行靠行高拉开",
+          "卡片与卡片之间不需要分隔线"
+        ]
+      }
+    }
+  ]
+}

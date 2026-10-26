@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "标签页，胶囊形分段切换。",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "tabs.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "forkedFrom": "shadcn@4.22.1/base-nova",
+        "usage": "在同一区域内切换几种并列的视图，例如\"全部 / 在看 / 看完\"。选项 2～5 个；line 变体用于页面级的二级导航。",
+        "avoid": [
+          "选项超过 5 个或需要层级时用侧栏导航",
+          "不要用标签页做表单的分步流程",
+          "选中态是灰阶，不要改成强调色"
+        ]
+      }
+    }
+  ]
+}

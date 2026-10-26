@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "下拉菜单：操作列表、勾选项、单选项、子菜单。",
+      "dependencies": [
+        "@base-ui/react",
+        "cn",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "dropdown-menu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "forkedFrom": "shadcn@4.22.1/base-nova",
+        "usage": "\"更多\"按钮、行操作、视图选项。危险操作放在最后，用 variant=\"destructive\" 并用分隔线隔开。",
+        "avoid": [
+          "从一组值里选一个并显示在触发器上时用 Select",
+          "菜单项不要用强调色，悬停和选中用灰色"
+        ]
+      }
+    }
+  ]
+}

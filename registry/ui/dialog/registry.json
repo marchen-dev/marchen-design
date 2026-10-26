@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "模态弹窗。",
+      "dependencies": [
+        "@base-ui/react",
+        "cn",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@marchen-design/button"
+      ],
+      "files": [
+        {
+          "path": "dialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "forkedFrom": "shadcn@4.22.1/base-nova",
+        "usage": "需要用户专注完成的任务或确认：表单编辑、重命名、删除确认、设置面板。标题用 DialogTitle，底部操作放 DialogFooter：主操作在右，用 default 变体；取消用 secondary，并用 DialogClose 包裹。",
+        "avoid": [
+          "不要用弹窗展示可以直接放在页面里的信息",
+          "不要在弹窗里再打开弹窗",
+          "大弹窗里放卡片时，内容区用 bg-background，卡片才会比底色亮"
+        ]
+      }
+    }
+  ]
+}

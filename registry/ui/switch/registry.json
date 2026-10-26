@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "开关。开启时为强调色。",
+      "dependencies": [
+        "@base-ui/react",
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "switch.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "forkedFrom": "shadcn@4.22.1/base-nova",
+        "usage": "立即生效的开 / 关设置，例如开机启动、通知开关；设置页中放在行的右侧。",
+        "avoid": [
+          "需要点\"保存\"才生效的选项用 Checkbox",
+          "不要用 Switch 表示多选列表中的选中"
+        ]
+      }
+    }
+  ]
+}

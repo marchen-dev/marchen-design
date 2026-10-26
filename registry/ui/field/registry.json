@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "表单字段的组合容器：标签、说明、控件、错误信息。",
+      "dependencies": [
+        "class-variance-authority",
+        "cn"
+      ],
+      "registryDependencies": [
+        "@marchen-design/label",
+        "@marchen-design/separator"
+      ],
+      "files": [
+        {
+          "path": "field.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "forkedFrom": "shadcn@4.22.1/base-nova",
+        "usage": "所有带标签的表单控件都用 Field 组织：竖排用于输入框、多行文本；横排（orientation=\"horizontal\"）用于设置页的\"名称 ↔ 开关 / 选择器\"行。错误时给 Field 加 data-invalid，给控件加 aria-invalid，并放 FieldError。",
+        "avoid": [
+          "不要自己用 div 拼标签 + 说明 + 错误信息",
+          "说明文字一行能说清就不要写两行"
+        ]
+      }
+    }
+  ]
+}

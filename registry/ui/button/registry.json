@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "按钮。default 为黑白反色的主操作，brand 为强调色。",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "button.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "forkedFrom": "shadcn@4.22.1/base-nova",
+        "usage": "default 用于页面或弹窗里的主操作（保存、确定、开始使用）；secondary 用于次要操作（取消、添加）；ghost 用于工具栏和行内图标按钮；brand 只在需要强调色时使用；destructive 用于删除这类不可逆操作。",
+        "avoid": [
+          "一屏不要出现多个 brand 按钮，主操作默认用 default",
+          "不要用 brand 表示状态（开关、选中），状态交给 Switch、Checkbox 等组件",
+          "不要通过 className 给按钮加渐变、阴影或其他彩色"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "下拉选择器，触发器为胶囊形。",
+      "dependencies": [
+        "@base-ui/react",
+        "cn",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "forkedFrom": "shadcn@4.22.1/base-nova",
+        "usage": "从一组固定选项中选一个，选项较多（超过 4 个）或空间有限时使用；设置页的\"名称 ↔ 选择器\"行。传入 items 让触发器显示选项的文字。",
+        "avoid": [
+          "只有两个选项、表示开 / 关时用 Switch",
+          "需要搜索过滤的长列表不要用 Select"
+        ]
+      }
+    }
+  ]
+}

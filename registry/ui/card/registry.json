@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "卡片容器：白底（深色下更亮一档）+ 一像素边框，没有阴影。",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "card.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "forkedFrom": "shadcn@4.22.1/base-nova",
+        "usage": "把一组相关内容或设置项框在一起，例如设置分组、信息摘要。设置分组用 size=\"sm\" 并去掉内边距，行与行之间不加分隔线。",
+        "avoid": [
+          "不要给卡片加阴影",
+          "不要把所有内容都套进卡片，平铺的列表和正文不需要",
+          "卡片不要嵌套卡片"
+        ]
+      }
+    }
+  ]
+}

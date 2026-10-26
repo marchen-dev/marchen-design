@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "全局通知。",
+      "dependencies": [
+        "@base-ui/react",
+        "cn",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@marchen-design/button"
+      ],
+      "files": [
+        {
+          "path": "toast.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "forkedFrom": "shadcn@4.22.1/base-nova",
+        "usage": "操作结果的轻量反馈：已保存、已复制、同步失败。在应用根部挂载一次 <Toaster />（或用 <Toaster>{children}</Toaster> 包裹应用），之后在任意位置 import { toast } from \"@/components/ui/toast\"，调用 toast.add({ title, description, type })；type 为 success / info / warning / error / loading。",
+        "avoid": [
+          "需要用户做决定的消息用 Dialog",
+          "不要给每个成功操作都弹 toast，界面上已有明显变化时可以省略",
+          "不要自定义彩色背景，错误类型会自动使用 destructive 色图标"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "文字提示，悬停或聚焦时出现。",
+      "dependencies": [
+        "@base-ui/react",
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "forkedFrom": "shadcn@4.22.1/base-nova",
+        "usage": "解释图标按钮的含义、补充被截断的文字。",
+        "avoid": [
+          "不要在 tooltip 里放可交互的内容（用 Popover）",
+          "不要用 tooltip 承载必须看到的信息，触屏设备上看不到"
+        ]
+      }
+    }
+  ]
+}

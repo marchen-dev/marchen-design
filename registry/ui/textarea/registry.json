@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "多行输入框，高度随内容增长。",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "textarea.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "forkedFrom": "shadcn@4.22.1/base-nova",
+        "usage": "备注、简介、反馈等多行文本。",
+        "avoid": [
+          "单行内容用 Input"
+        ]
+      }
+    }
+  ]
+}

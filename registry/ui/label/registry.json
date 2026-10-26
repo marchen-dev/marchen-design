@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "表单标签。",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "label.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "forkedFrom": "shadcn@4.22.1/base-nova",
+        "usage": "给输入框、开关、复选框等控件提供可点击的文字标签；在 Field 中使用 FieldLabel。",
+        "avoid": [
+          "不要用 Label 当普通标题或说明文字"
+        ]
+      }
+    }
+  ]
+}
