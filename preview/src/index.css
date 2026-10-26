@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+/* token 由 scripts/gen-tokens.ts 生成，与用户项目安装 base 后得到的值一致 */
+@import "./theme.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* registry 源码不在 Vite root 内，需显式加入 Tailwind 扫描 */
+@source "../../registry";
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
